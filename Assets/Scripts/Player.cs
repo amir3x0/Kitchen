@@ -24,8 +24,10 @@ public class Player : MonoBehaviour {
         }
         inVec = inVec.normalized;
 
-        transform.position += new Vector3(inVec.x, 0f, inVec.y) * moveSpeed * Time.deltaTime;
+        Vector3 movVec = new Vector3(inVec.x, 0f, inVec.y); 
 
-        Debug.Log(Time.deltaTime);
+        transform.position += movVec * moveSpeed * Time.deltaTime;
+
+        transform.forward = Vector3.Slerp(transform.forward, movVec, 0.1f);
     }
 }
