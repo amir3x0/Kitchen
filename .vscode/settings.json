@@ -51,5 +51,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Kitchen.sln"
+    "dotnet.defaultSolution": "Kitchen.sln",
+    "editor.tabCompletion": "on"
 }
