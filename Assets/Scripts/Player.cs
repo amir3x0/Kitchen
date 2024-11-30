@@ -53,22 +53,6 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         {
             selectedCounter.Interact(this);
         }
-        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
-        Vector3 movVec = new Vector3(inputVector.x, 0f, inputVector.y);
-
-        if (movVec != Vector3.zero)
-        {
-            lastInteractDir = movVec;
-        }
-
-        float interactDistance = 2f;
-        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
-        {
-            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
-            {
-                clearCounter.Interact(this);
-            }
-        }
     }
 
     private void HandleInteractions()
@@ -100,9 +84,9 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         {
             SetSelectedCounter(null);
         }
-
-
     }
+
+
     private void HandleMovement()
     {
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();

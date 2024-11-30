@@ -30,7 +30,7 @@ public class ClearCounter : MonoBehaviour , IKitchenObjectParent
         }
         else {
             Debug.Log("kitchen object not null");
-            // kitchenObject.SetKitchenObjectParent(player);
+            kitchenObject.SetKitchenObjectParent(player);
         }
 
     }
