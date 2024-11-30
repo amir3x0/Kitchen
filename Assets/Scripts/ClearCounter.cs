@@ -21,13 +21,16 @@ public class ClearCounter : MonoBehaviour , IKitchenObjectParent
     }
     public void Interact(Player player)
     {
+        Debug.Log("i got here first");
         if (kitchenObject == null)
         {
+            Debug.Log("im here");
             Transform KitchenObjectTransform = Instantiate(kitchenObjectSO.prefab, counterTopPoint);
             KitchenObjectTransform.GetComponent<KitchenObjects>().SetKitchenObjectParent(this);
         }
         else {
-            kitchenObject.SetKitchenObjectParent(player);
+            Debug.Log("kitchen object not null");
+            // kitchenObject.SetKitchenObjectParent(player);
         }
 
     }
