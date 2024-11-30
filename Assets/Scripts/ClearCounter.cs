@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClearCounter : MonoBehaviour
+public class ClearCounter : MonoBehaviour , IKitchenObjectParent
 {
 
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
@@ -15,28 +15,40 @@ public class ClearCounter : MonoBehaviour
     private void Update(){
         if (testing && Input.GetKeyDown(KeyCode.T)){
             if(kitchenObject != null){
-                kitchenObject.SetClearCounter(secondClearCounter);
-                Debug.Log(kitchenObject.GetClearCounter());
+                kitchenObject.SetKitchenObjectParent(secondClearCounter);
             }
         }
     }
-    public void Interact()
+    public void Interact(Player player)
     {
         if (kitchenObject == null)
         {
             Transform KitchenObjectTransform = Instantiate(kitchenObjectSO.prefab, counterTopPoint);
-            KitchenObjectTransform.localPosition = Vector3.zero;
-
-            kitchenObject = KitchenObjectTransform.GetComponent<KitchenObjects>();
-            kitchenObject.SetClearCounter(this);
+            KitchenObjectTransform.GetComponent<KitchenObjects>().SetKitchenObjectParent(this);
         }
         else {
-            Debug.Log(kitchenObject.GetClearCounter());
+            kitchenObject.SetKitchenObjectParent(player);
         }
 
     }
 
     public Transform GetKitchenObjectFollowTransform(){
         return counterTopPoint;
+    }
+
+    public void SetKitchenObject(KitchenObjects kitchenObject){
+        this.kitchenObject = kitchenObject;
+    }
+
+    public KitchenObjects GetKitchenObjects(){
+        return kitchenObject;
+    }
+
+    public void ClearKitchenObject(){
+        kitchenObject = null;
+    }
+
+    public bool HasKitchenObject(){
+        return kitchenObject != null;
     }
 }
